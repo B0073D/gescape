@@ -18,12 +18,14 @@ class Dijkstra:
     map_bounds = []
     origin = []
     target = []
+    best_path = []
 
     def __init__(self, map, origin, target):
         self.map = map
         self.map_bounds = [len(map[0]), len(map[0][0])]
         self.origin = origin
         self.target = target
+        self.best_path = []
 
     def generate_map(self):
         map_raw = []
@@ -59,7 +61,6 @@ class Dijkstra:
             if picker_set != []:
                 picker_set.sort(key=itemgetter(2))
                 current_node = picker_set[0]
-                print current_node
                 node_neighbours = self.get_unvisited_neighbours(current_node, nodes_unvisited, self.map_bounds)
                 for node in node_neighbours:
                     if map_raw[node[0]][node[1]] < 0:
@@ -73,8 +74,26 @@ class Dijkstra:
                 nodes_unvisited.remove([current_node[0], current_node[1]])
             else:
                 running_loop = 0
-        print map_raw
         self.map[0] = map_raw
+
+    def get_path(self):
+        current_node = self.origin
+        self.best_path = []
+        self.best_path.append(current_node)
+        running = 1
+        while running == 1:
+            neighbours = []
+            neighbours_tmp = self.get_neighbours(current_node, self.map_bounds)
+            for i in neighbours_tmp:
+                neighbours.append([i[0], i[1], self.map[0][i[0]][i[1]]])
+            neighbours.sort(key=itemgetter(2))
+            if neighbours[0][2] >= self.map[0][current_node[0]][current_node[1]]:
+                running = 0
+            else:
+                current_node = [neighbours[0][0], neighbours[0][1]]
+                self.best_path.append(current_node)
+
+        return self.best_path
 
     def get_unvisited_neighbours(self, current, unvisited, map_bounds):
         tmp_set = []
@@ -89,8 +108,20 @@ class Dijkstra:
             if i in unvisited:
                 if i[0] >= 0 and i[1] >= 0 and i[0] < map_bounds[0] and i[1] < map_bounds[1]:
                     final_set.append(i)
-        print "Final set:"
-        print final_set
+        return final_set
+
+    def get_neighbours(self, current, map_bounds):
+        tmp_set = []
+        # Create first raw set to check
+        tmp_set.append([current[0], current[1]-1])
+        tmp_set.append([current[0], current[1]+1])
+        tmp_set.append([current[0]-1, current[1]])
+        tmp_set.append([current[0]+1, current[1]])
+
+        final_set = []
+        for i in tmp_set:
+            if i[0] >= 0 and i[1] >= 0 and i[0] < map_bounds[0] and i[1] < map_bounds[1]:
+                final_set.append(i)
         return final_set
 
 def test():
