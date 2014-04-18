@@ -4,6 +4,7 @@ __author__ = 'Tim Suess'
 import pygame
 import settings
 import sys
+import path
 
 #pygame init things
 pygame.init()
