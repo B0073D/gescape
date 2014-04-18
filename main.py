@@ -27,7 +27,7 @@ def main():  # Main loop
     for i in xrange(settings.width):
         tmp_row = []
         for ii in xrange(settings.height):
-            if random.randint(1, 25) == 1:
+            if random.randint(1, settings.obstacle_ratio) == 1:
                 tmp_row.append(1)
             else:
                 tmp_row.append(0)
@@ -37,14 +37,16 @@ def main():  # Main loop
     navmap = path.Dijkstra(navmap, settings.origin, settings.target)
     navmap.generate_map()
     print navmap.map
+    pathnodes = navmap.get_path()
 
     while 1:
         screen.fill(settings.black)
         for row in range(settings.width):
             for node in range(settings.height):
                 node_weight = navmap.map[0][row][node]
-
-                if node_weight < 255:
+                if node_weight < 0:
+                    colour = 0, 0, 255
+                elif node_weight < 255:
                     colour = node_weight, 0, 0
                 elif node_weight < 510:
                     colour = 255, node_weight - 255, 0
@@ -55,9 +57,11 @@ def main():  # Main loop
                 if navmap.map[1][row][node] == 0:
                     pygame.draw.circle(screen, colour, (row, node), 1)
 
-        for node in navmap.get_path():
+        for node in pathnodes:
             pygame.draw.circle(screen, settings.green, (node[0], node[1]), 1)
 
+        pygame.draw.circle(screen, settings.green, (settings.origin[0], settings.origin[1]), 2)
+        pygame.draw.circle(screen, settings.green, (settings.target[0], settings.target[1]), 2)
         pygame.display.flip()
 
         for event in pygame.event.get():

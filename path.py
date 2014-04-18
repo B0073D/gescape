@@ -87,12 +87,22 @@ class Dijkstra:
             for i in neighbours_tmp:
                 neighbours.append([i[0], i[1], self.map[0][i[0]][i[1]]])
             neighbours.sort(key=itemgetter(2))
-            if neighbours[0][2] >= self.map[0][current_node[0]][current_node[1]]:
+            if neighbours[0][2] > self.map[0][current_node[0]][current_node[1]]:
                 running = 0
+                print "Neighbours:"
+                print neighbours
+                print "Current node:"
+                print current_node
+                print self.map[0][current_node[0]][current_node[1]]
+            elif [neighbours[0][0], neighbours[0][1]] == self.target:
+                running = 0
+                print "Neighbours:"
+                print neighbours
             else:
                 current_node = [neighbours[0][0], neighbours[0][1]]
                 self.best_path.append(current_node)
-
+        print "Best path:"
+        print self.best_path
         return self.best_path
 
     def get_unvisited_neighbours(self, current, unvisited, map_bounds):
@@ -107,7 +117,8 @@ class Dijkstra:
         for i in tmp_set:
             if i in unvisited:
                 if i[0] >= 0 and i[1] >= 0 and i[0] < map_bounds[0] and i[1] < map_bounds[1]:
-                    final_set.append(i)
+                    if self.map[1][i[0]][i[1]] == 0:
+                        final_set.append(i)
         return final_set
 
     def get_neighbours(self, current, map_bounds):
@@ -121,7 +132,8 @@ class Dijkstra:
         final_set = []
         for i in tmp_set:
             if i[0] >= 0 and i[1] >= 0 and i[0] < map_bounds[0] and i[1] < map_bounds[1]:
-                final_set.append(i)
+                if self.map[1][i[0]][i[1]] == 0:
+                    final_set.append(i)
         return final_set
 
 def test():

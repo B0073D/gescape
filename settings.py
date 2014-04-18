@@ -1,8 +1,9 @@
 __author__ = 'Tim Suess'
 
-size = width, height = 100, 100
+size = width, height = 150, 150
 origin = [5, 5]
-target = [87, 48]
+target = [127, 148]
+obstacle_ratio = 4
 # pygame display colours
 black = 0, 0, 0
 red = 255, 100, 100
