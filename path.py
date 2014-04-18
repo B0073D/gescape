@@ -76,12 +76,6 @@ class Dijkstra:
         print map_raw
         self.map[0] = map_raw
 
-
-
-
-
-
-
     def get_unvisited_neighbours(self, current, unvisited, map_bounds):
         tmp_set = []
         # Create first raw set to check
