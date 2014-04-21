@@ -20,9 +20,9 @@ class Dijkstra:
     target = []
     best_path = []
 
-    def __init__(self, map, origin, target):
-        self.map = map
-        self.map_bounds = [len(map[0]), len(map[0][0])]
+    def __init__(self, inputmap, origin, target):
+        self.map = inputmap
+        self.map_bounds = [len(inputmap[0]), len(inputmap[0][0])]
         self.origin = origin
         self.target = target
         self.best_path = []
@@ -45,7 +45,6 @@ class Dijkstra:
         # Set target node to 0 weight
         map_raw[self.target[0]][self.target[1]] = 0
 
-        running_loop = 1
         current_node = self.target[:]
         initial_nodes = self.get_unvisited_neighbours(current_node, nodes_unvisited, self.map_bounds)
         for i in initial_nodes:

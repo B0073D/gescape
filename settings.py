@@ -8,3 +8,4 @@ obstacle_ratio = 3
 black = 0, 0, 0
 red = 255, 100, 100
 green = 0, 255, 0
+debug = 1
