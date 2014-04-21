@@ -20,18 +20,18 @@ def main():  # Main loop
     tmp_map = []
 
     # Generates input map
-    for i in xrange(settings.width):
+    for i in xrange(settings.map_width):
         tmp_row = []
-        for ii in xrange(settings.height):
+        for ii in xrange(settings.map_height):
             tmp_row.append(0)
         tmp_map.append(tmp_row)
     navmap.append(tmp_map)
 
     # Generates obstacle map
     tmp_map = []
-    for i in xrange(settings.width):
+    for i in xrange(settings.map_width):
         tmp_row = []
-        for ii in xrange(settings.height):
+        for ii in xrange(settings.map_height):
             if random.randint(1, settings.obstacle_ratio) == 1:
                 tmp_row.append(1)
             else:
@@ -53,8 +53,8 @@ def main():  # Main loop
         screen.fill(settings.black)
 
         # Draw navigation map
-        for row in range(settings.width):
-            for node in range(settings.height):
+        for row in range(settings.map_width):
+            for node in range(settings.map_height):
                 node_weight = navmap.map[0][row][node]
                 if node_weight < 0:
                     colour = 0, 0, 255
@@ -69,12 +69,11 @@ def main():  # Main loop
 
                 # Draw obstacles
                 if navmap.map[1][row][node] == 0:
-                    pygame.draw.circle(screen, colour, (row, node), 1)
+                    screen.set_at((node, row), colour)
 
         # Draw path
         for node in pathnodes:
-            pygame.draw.circle(screen, settings.green, (node[0], node[1]), 1)
-
+            screen.set_at((node[0], node[1]), settings.green)
         # Draw start and end of path
         pygame.draw.circle(screen, settings.green, (settings.origin[0], settings.origin[1]), 2)
         pygame.draw.circle(screen, settings.green, (settings.target[0], settings.target[1]), 2)
@@ -96,4 +95,3 @@ def main():  # Main loop
 # __main__ loop
 if __name__ == "__main__":
     main()
-
