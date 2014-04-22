@@ -108,7 +108,9 @@ def main():  # Main loop
                 x_point = node[0] + math.sqrt((settings.hex_pixels_to_units / 2) ** 2 + (diplomat.height_with_ratio / 3) ** 2) * math.cos(angle)
                 y_point = node[1] + math.sqrt((settings.hex_pixels_to_units / 2) ** 2 + (diplomat.height_with_ratio / 3) ** 2) * math.sin(angle)
                 hex_lines.append([int(x_point), int(y_point)])
-            print hex_lines
+
+            if settings.debug > 0:
+                print hex_lines
 
             # pygame.draw.circle(screen, colour, (node[0], node[1]), 6)
             pygame.draw.polygon(screen, colour, hex_lines)
