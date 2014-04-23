@@ -15,38 +15,38 @@ class Translator:
         self.height_with_ratio = int(math.sqrt(self.pixels_to_units ** 2 + (self.pixels_to_units / 2) ** 2))
 
     # Return translated map
-    def map(self, inputmap):
+    def map(self, input_map):
         __even = 1
-        outputmap = []
+        output_map = []
         __rowcount = 0
 
-        for row in inputmap:
-            __nodecount = 0
+        for row in input_map:
+            __node_count = 0
             if __even == 1:
                 for node in row:
-                    outputmap.append([int(__nodecount * self.pixels_to_units + self.offset[0]),
+                    output_map.append([int(__node_count * self.pixels_to_units + self.offset[0]),
                                       int(__rowcount * self.height_with_ratio + self.offset[1]),
                                       node])
-                    __nodecount += 1
+                    __node_count += 1
                     __even = 0
             elif __even == 0:
                 for node in row:
-                    outputmap.append([int(__nodecount * self.pixels_to_units + self.offset[0] + self.pixels_to_units / 2),
+                    output_map.append([int(__node_count * self.pixels_to_units + self.offset[0] + self.pixels_to_units / 2),
                                       int(__rowcount * self.height_with_ratio + self.offset[1]),
                                       node])
-                    __nodecount += 1
+                    __node_count += 1
                     __even = 1
             __rowcount += 1
 
-        return outputmap
+        return output_map
 
     # Returns a translated individual set of coordinates
-    def individual(self, input_coords):
+    def individual(self, input_coordinates):
         # Translates coordinates depending on if odd or even row
-        if input_coords[1] % 2 == 0:
-            output_coords = [int(input_coords[0] * self.pixels_to_units + self.offset[0]),
-                             int(input_coords[1] * self.height_with_ratio + self.offset[1])]
+        if input_coordinates[1] % 2 == 0:
+            output_coordinates = [int(input_coordinates[0] * self.pixels_to_units + self.offset[0]),
+                                  int(input_coordinates[1] * self.height_with_ratio + self.offset[1])]
         else:
-            output_coords = [int(input_coords[0] * self.pixels_to_units + self.offset[0] + self.pixels_to_units / 2),
-                             int(input_coords[1] * self.height_with_ratio + self.offset[1])]
-        return output_coords
+            output_coordinates = [int(input_coordinates[0] * self.pixels_to_units + self.offset[0] + self.pixels_to_units / 2),
+                                  int(input_coordinates[1] * self.height_with_ratio + self.offset[1])]
+        return output_coordinates
