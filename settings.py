@@ -1,9 +1,9 @@
 __author__ = 'Tim Suess'
 
-size = width, height = 600, 600
-map_size = map_width, map_height = 35, 35
-origin = [2, 2]
-target = [33, 33]
+size = width, height = 700, 700
+map_size = map_width, map_height = 45, 45
+origin = [1, 1]
+target = [14, 14]
 obstacle_ratio = 5
 hex_pixels_to_units = 15
 hex_starting_offset = [10, 10]

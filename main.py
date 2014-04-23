@@ -129,7 +129,7 @@ def main():  # Main loop
         pygame.draw.circle(screen, settings.green, (target_translated[0], target_translated[1]), 7)
 
         # Makes sure the simulation doesn't run faster than 60fps
-        clock.tick(60)
+        clock.tick(30)
 
         # Flip (render) display
         pygame.display.flip()

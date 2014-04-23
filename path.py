@@ -65,7 +65,7 @@ class Dijkstra:
                 picker_set.sort(key=itemgetter(2))
                 current_node = picker_set[0]
                 node_neighbours = self.get_unvisited_neighbours(current_node, nodes_unvisited, self.map_bounds)
-                for node in node_neighbours:
+                for node in node_neighbours:  # Checks neighbouring nodes and overwrites them if smaller or unwritten
                     if map_raw[node[1]][node[0]] < 0:
                         map_raw[node[1]][node[0]] = map_raw[current_node[1]][current_node[0]] + 1
                         if self.map[1][node[1]][node[0]] == 1:
