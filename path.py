@@ -1,16 +1,16 @@
 __author__ = 'Tim Suess'
 
-# Map layout
-example_map = [[[-1, -1, -1, -1],
-[-1, -1, -1, -1],
-[-1, -1, -1, -1],
-[-1, -1, -1, -1]],
-[[1, 0, 1, 0],
-[0, 1, 0, 0],
-[0, 0, 0, 0],
-[0, 0, 0, 0]]]
 
 from operator import itemgetter
+
+test_map = [[[-1, -1, -1, -1],
+             [-1, -1, -1, -1],
+             [-1, -1, -1, -1],
+             [-1, -1, -1, -1]],
+            [[0, 0, 0, 0],
+             [1, 1, 0, 0],
+             [0, 0, 0, 1],
+             [0, 0, 0, 0]]]
 
 
 class Dijkstra:
@@ -20,9 +20,9 @@ class Dijkstra:
     target = []  # End point
     best_path = []  # Best path based on calculated navigation map
 
-    def __init__(self, inputmap, origin, target):
-        self.map = inputmap
-        self.map_bounds = [len(inputmap[0][0]), len(inputmap[0])]
+    def __init__(self, input_map, origin, target):
+        self.map = input_map
+        self.map_bounds = [len(input_map[0][0]), len(input_map[0])]
         self.origin = origin
         self.target = target
         self.best_path = []
@@ -96,20 +96,11 @@ class Dijkstra:
             neighbours.sort(key=itemgetter(2))
             if neighbours[0][2] > self.map[0][current_node[1]][current_node[0]]:
                 running = 0
-                print "Neighbours:"
-                print neighbours
-                print "Current node:"
-                print current_node
-                print self.map[0][current_node[1]][current_node[0]]
             elif [neighbours[0][0], neighbours[0][1]] == self.target:
                 running = 0
-                print "Neighbours:"
-                print neighbours
             else:
                 current_node = [neighbours[0][0], neighbours[0][1]]
                 self.best_path.append(current_node)
-        print "Best path:"
-        print self.best_path
         return self.best_path
 
     # Gets valid node neighbours from set of unvisited nodes
