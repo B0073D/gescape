@@ -6,6 +6,21 @@ Genetic Algorithm and other AI testing.
 
 This is a 'game' that will employ Genetic and other algorithms to generate enemies.
 
+Tests:
+
+# nosetests --with-coverage                                                                                                                                                             [1:25:44 PM]
+....
+Name    Stmts   Miss  Cover   Missing
+-------------------------------------
+hex        33      1    97%   50
+path      113     15    87%   72, 74-76, 96, 140-150
+-------------------------------------
+TOTAL     146     16    89%
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+OK
+
 
 TODO:
 -----
