@@ -22,10 +22,16 @@ result_map_small = [[10, 10, [-1, -1, -1, -1]],
                     [62, 26, [0, 0, 0, 0]]]
 
 
-def test_individual():
+def test_individual_even():
     diplomat = hex.Translator(15, [10, 10])
 
     assert_equal(diplomat.individual([14, 14]), [220, 234])
+
+
+def test_individual_odd():
+    diplomat = hex.Translator(15, [10, 10])
+
+    assert_equal(diplomat.individual([11, 11]), [182, 186])
 
 
 def test_map():
