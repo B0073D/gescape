@@ -5,7 +5,7 @@ import math
 
 
 class Translator:
-    pixels_to_units = 1  # Ratio of pixels to units, units being the distance between tile centers
+    pixels_to_units = 0  # Ratio of pixels to units, units being the distance between tile centers
     offset = [0, 0]  # Starting offset
     height_with_ratio = 0  # distance on the y axis between two rows
 
